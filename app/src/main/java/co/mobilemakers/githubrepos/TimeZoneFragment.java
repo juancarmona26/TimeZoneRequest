@@ -28,30 +28,30 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GithubReposFragment extends Fragment {
+public class TimeZoneFragment extends Fragment {
 
-    private static final String LOG_TAG = GithubReposFragment.class.getSimpleName();
-    EditText mEditTextUserName;
-    TextView mTextViewRepos;
+    private static final String LOG_TAG = TimeZoneFragment.class.getSimpleName();
+    EditText mEditTextLocation;
+    TextView mTextViewTimeZone;
 
 
-    public GithubReposFragment() {
+    public TimeZoneFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_github_repos, container, false);
-        mEditTextUserName = (EditText) rootView.findViewById(R.id.edit_text_username);
-        mTextViewRepos = (TextView) rootView.findViewById(R.id.text_view_repos);
-        Button button_get_Repos = (Button) rootView.findViewById(R.id.button_get_repos);
+        View rootView = inflater.inflate(R.layout.fragment_time_zone, container, false);
+        mEditTextLocation = (EditText) rootView.findViewById(R.id.edit_text_location);
+        mTextViewTimeZone = (TextView) rootView.findViewById(R.id.text_view_time_zone);
+        Button button_get_Repos = (Button) rootView.findViewById(R.id.button_get_locations);
         button_get_Repos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String location = mEditTextUserName.getText().toString();
-                String message = String.format(getString(R.string.getting_repos_for_user), location);
+                String location = mEditTextLocation.getText().toString();
+                String message = String.format(getString(R.string.getting_locations), location);
                 Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-                new FetchReposTask().execute(location);
+                new FetchTimeZoneTask().execute(location);
 
 
             }
@@ -59,7 +59,7 @@ public class GithubReposFragment extends Fragment {
         return rootView;
     }
 
-    private URL contructQuery (String location) throws MalformedURLException {
+    private URL constructQuery(String location) throws MalformedURLException {
         final String WORLD_WEATHER_BASE_URL = "api.worldweatheronline.com";
         final String TIME_ZONE_PATH = "free/v2/";
         final String REPOS_ENDPOINT  = "tz.ashx";
@@ -100,24 +100,24 @@ public class GithubReposFragment extends Fragment {
         return response;
     }
 
-    class FetchReposTask extends AsyncTask<String, Void, String> {
+    class FetchTimeZoneTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
-            String username;
-            String listOfRepos = "";
+            String location;
+            String listOfTimeZones = "";
             if(params.length > 0){
-                username = params[0];
+                location = params[0];
             } else {
-                username = "octocat";
+                location = "Mexico";
             }
             try {
-                URL url  = contructQuery(username);
+                URL url  = constructQuery(location);
                 HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
                 try {
                     String response = readFullResponse(httpConnection.getInputStream());
                     Log.d(LOG_TAG, "Response: " + response);
-                    listOfRepos = parseResponse(response);
+                    listOfTimeZones = parseResponse(response);
                 } catch (java.io.IOException e) {
                     e.printStackTrace();
                 } finally {
@@ -128,13 +128,13 @@ public class GithubReposFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            return listOfRepos;
+            return listOfTimeZones;
         }
 
         @Override
         protected void onPostExecute(String response) {
             super.onPostExecute(response);
-            mTextViewRepos.setText(response);
+            mTextViewTimeZone.setText(response);
         }
     }
 

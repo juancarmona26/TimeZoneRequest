@@ -6,15 +6,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class GithubReposActivity extends ActionBarActivity {
+public class TimeZoneActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_github_repos);
+        setContentView(R.layout.activity_time_zone);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new GithubReposFragment())
+                    .add(R.id.container, new TimeZoneFragment())
                     .commit();
         }
     }
@@ -23,7 +23,7 @@ public class GithubReposActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_github_repos, menu);
+        getMenuInflater().inflate(R.menu.menu_time_zone, menu);
         return true;
     }
 

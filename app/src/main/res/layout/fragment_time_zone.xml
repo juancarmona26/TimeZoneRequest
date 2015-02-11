@@ -9,18 +9,18 @@
 
 
 
-    <EditText android:id="@+id/edit_text_username"
+    <EditText android:id="@+id/edit_text_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/text_view_location_hint"
          />
 
-    <TextView android:id="@+id/text_view_repos"
+    <TextView android:id="@+id/text_view_time_zone"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <Button android:id="@+id/button_get_repos"
+    <Button android:id="@+id/button_get_locations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_get_time_zone"
