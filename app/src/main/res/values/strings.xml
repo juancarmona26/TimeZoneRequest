@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GithubRepos</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_text_username_hint">GitHub Username</string>
+    <string name="button_get_repos">Get Repos</string>
+    <string name="getting_repos_for_user">Getting repos for user: %s</string>
+    <string name="text_view_location_hint">Enter your Location (London, Mexico, Australia etc.)</string>
+    <string name="button_get_time_zone">Get Time Zone</string>
+
+</resources>
